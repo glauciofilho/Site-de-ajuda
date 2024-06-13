@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Ajuda</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: lightblue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #2196F3; /* Azul claro */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Central de Ajuda</h1>
+
+    <form id="form-ajuda">
+        <label for="problema">Qual seu problema?</label>
+        <textarea id="problema" rows="4" placeholder="Descreva seu problema..."></textarea>
+
+        <label for="ajuda">Como posso ajudar?</label>
+        <select id="ajuda">
+            <option value="conversar">Conversar sobre</option>
+            <option value="ouvir">Só ouvir</option>
+            <option value="outroAssunto">Conversar sobre outro assunto</option>
+            <option value="presente">Só estar presente</option>
+        </select>
+
+        <label for="local">Onde você está?</label>
+        <input type="text" id="local" placeholder="Informe sua localização...">
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        const formAjuda = document.getElementById('form-ajuda');
+
+        formAjuda.addEventListener('submit', (event) => {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Obter os valores dos campos
+            const problema = document.getElementById('problema').value;
+            const ajuda = document.getElementById('ajuda').value;
+            const local = document.getElementById('local').value;
+
+            // Fazer algo com os valores, como enviar para um servidor
+            console.log("Problema:", problema);
+            console.log("Ajuda:", ajuda);
+            console.log("Local:", local);
+
+            // Limpar os campos do formulário
+            formAjuda.reset();
+        });
+    </script>
+</body>
+</html>
