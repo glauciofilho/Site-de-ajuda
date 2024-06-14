@@ -51,6 +51,16 @@
             cursor: pointer;
         }
     </style>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+            publicKey: "aeEurbP3bE8ycnxj_",
+        });
+        })();
+    </script>
 </head>
 <body>
     <h1>Central de Ajuda</h1>
@@ -73,24 +83,35 @@
         <button type="submit">Enviar</button>
     </form>
 
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
         const formAjuda = document.getElementById('form-ajuda');
 
         formAjuda.addEventListener('submit', (event) => {
-            event.preventDefault(); // Impede o envio padrão do formulário
+            event.preventDefault();
 
             // Obter os valores dos campos
-            const problema = document.getElementById('problema').value;
-            const ajuda = document.getElementById('ajuda').value;
-            const local = document.getElementById('local').value;
+            var parametros = {
+                problema: document.getElementById('problema').value,
+                ajuda: document.getElementById('ajuda').value,
+                local: document.getElementById('local').value,
+            };
 
-            // Fazer algo com os valores, como enviar para um servidor
-            console.log("Problema:", problema);
-            console.log("Ajuda:", ajuda);
-            console.log("Local:", local);
+            //Configurar serviço e template
+            const serviceID = "service_g25cl4i";
+            const templateID = "template_4nslioe";
 
-            // Limpar os campos do formulário
-            formAjuda.reset();
+            // Configurar EmailJS
+            emailjs
+            .send(serviceID,templateID,parametros)
+            .then(message => {
+                alert("Mensagem enviada com sucesso!");
+                formAjuda.reset();
+            })
+            .catch(error => {
+                console.error("Erro ao enviar mensagem:", error);
+                alert("Falha ao enviar mensagem. Por favor, tente novamente mais tarde.");
+            });
         });
     </script>
 </body>
